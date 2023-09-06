@@ -7,22 +7,22 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 
 public class OrderListTest {
-    public static final String SCOOTER_SERVICE_URI = "https://qa-scooter.praktikum-services.ru/";
-    private ScooterServiceClient client = new ScooterServiceClient();
+
+    private ScooterServiceOrder order = new ScooterServiceOrder();
 
     @Before
     public void setUp() {
         RequestSpecification requestSpec =
                 new RequestSpecBuilder()
-                        .setBaseUri(SCOOTER_SERVICE_URI)
+                        .setBaseUri(ScooterServiceClient.SCOOTER_SERVICE_URI)
                         .setContentType(ContentType.JSON)
                         .build();
-        client.setRequestSpec(requestSpec);
+        order.setRequestSpec(requestSpec);
     }
 
     @Test
-    public void listOrder_expect_notNullBody() {
-        ValidatableResponse response = client.listOrder();
+    public void listOrderExpectNotNullBody() {
+        ValidatableResponse response = order.listOrder();
         assertNotNull(response.extract().body());
     }
 }

@@ -6,8 +6,8 @@ public class ScooterServiceClient {
 
   public static final String CREATE_COURIER_ENDPOINT = "/api/v1/courier";
   public static final String COURIER_LOGIN_ENDPOINT = "/api/v1/courier/login";
-  public static final String CREATE_ORDER_ENDPOINT = "/api/v1/orders";
   private RequestSpecification requestSpec;
+  public static final String SCOOTER_SERVICE_URI = "https://qa-scooter.praktikum-services.ru/";
 
   public void setRequestSpec(RequestSpecification requestSpec) {
     this.requestSpec = requestSpec;
@@ -48,26 +48,4 @@ public class ScooterServiceClient {
             .all();
   }
 
-  public ValidatableResponse createOrder(Order order) {
-    return given()
-            .spec(requestSpec)
-            .log()
-            .all()
-            .body(order)
-            .post(CREATE_ORDER_ENDPOINT)
-            .then()
-            .log()
-            .all();
-  }
-
-  public ValidatableResponse listOrder() {
-    return given()
-            .spec(requestSpec)
-            .log()
-            .all()
-            .get(CREATE_ORDER_ENDPOINT)
-            .then()
-            .log()
-            .all();
-  }
 }
